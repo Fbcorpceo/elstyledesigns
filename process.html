@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Process — El Style Designs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .page-head {
+    padding: 200px 48px 120px;
+    max-width: 1480px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-head .meta { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--ink-mute); }
+  .page-head .meta span { display: block; margin-top: 4px; color: var(--ink); }
+  .page-head h1 {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 9vw, 140px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+  .page-head h1 em { font-style: italic; }
+  @media (max-width: 920px) { .page-head { grid-template-columns: 1fr; padding: 140px 24px 60px; gap: 32px; } }
+
+  .timeline { max-width: 1480px; margin: 0 auto; padding: 0 48px; }
+  .step {
+    display: grid;
+    grid-template-columns: 200px 1fr 1.2fr;
+    gap: 60px;
+    padding: 80px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .step .marker {
+    position: sticky;
+    top: 120px;
+  }
+  .step .marker .num {
+    font-family: var(--font-display);
+    font-size: 96px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .step .marker .num em { font-style: italic;  }
+  .step .marker .dur {
+    margin-top: 16px;
+    font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--ink-mute);
+  }
+  .step h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .step h2 em { font-style: italic; }
+  .step p {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .step .deliverables {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .step .deliverables h4 {
+    font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--ink-mute);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .step .deliverables ul { list-style: none; }
+  .step .deliverables li {
+    font-family: var(--font-display);
+    font-size: 17px;
+    padding: 8px 0;
+    display: flex;
+    gap: 16px;
+  }
+  .step .deliverables li::before { content: "→";  flex-shrink: 0; }
+  .step .img { aspect-ratio: 4/5; }
+  @media (max-width: 920px) {
+    .timeline { padding: 0 24px; }
+    .step { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
+    .step .marker { position: static; }
+    .step .marker .num { font-size: 64px; }
+  }
+
+  .between {
+    padding: 120px 48px;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .between p {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .between p em {  }
+
+  .cta {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 160px 48px;
+    margin-top: 120px;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 120px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+  .cta h2 em { font-style: italic; color: var(--sand); }
+  .cta .btn { border-color: var(--bone); color: var(--bone); }
+  .cta .btn:hover { background: var(--bone); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="mark" data-transition>El <em>Style</em> Designs</a>
+  <div class="links">
+    <a href="index.html" data-transition>Index</a>
+    <a href="about.html" data-transition>About</a>
+    <a href="services.html" data-transition>Services</a>
+    <a href="process.html" class="active">Process</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="pill" data-transition>Inquire</a>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="meta">§ C<span>Process</span></div>
+  <h1>How a project<br>becomes a <em>home</em>.</h1>
+</header>
+
+<section class="timeline">
+  <div class="step">
+    <div class="marker">
+      <div class="num">0<em>1</em></div>
+      <div class="dur">Weeks 1 — 4</div>
+    </div>
+    <div class="reveal">
+      <h2>The <em>Conversation</em></h2>
+      <p>Every project begins with a long, unhurried conversation — at the site if possible, at the studio if not. We discuss the house, but we also discuss your mornings, your dinners, the books on your nightstand.</p>
+      <div class="deliverables">
+        <h4>Deliverables</h4>
+        <ul><li>Site walk-through & survey</li><li>Brief & vision document</li><li>Phase plan & investment range</li><li>Letter of agreement</li></ul>
+      </div>
+    </div>
+    <div class="img imgcard reveal-img"><div class="tex tex-9"></div><div class="ph">Notes — First site visit</div></div>
+  </div>
+
+  <div class="step">
+    <div class="marker">
+      <div class="num">0<em>2</em></div>
+      <div class="dur">Weeks 4 — 12</div>
+    </div>
+    <div class="reveal">
+      <h2>The <em>Concept</em></h2>
+      <p>A material direction is drafted, defended, and refined — usually across three meetings. Floor plans, joinery sketches, palette boards, the first lighting plot. Nothing is purchased yet; everything is decided.</p>
+      <div class="deliverables">
+        <h4>Deliverables</h4>
+        <ul><li>Floor plans & elevations</li><li>Material palette & samples</li><li>Lighting & electrical plot</li><li>Preliminary furniture concept</li></ul>
+      </div>
+    </div>
+    <div class="img imgcard reveal-img"><div class="tex tex-2"></div><div class="ph">Sample board — Material direction</div></div>
+  </div>
+
+  <div class="step">
+    <div class="marker">
+      <div class="num">0<em>3</em></div>
+      <div class="dur">Months 3 — 9</div>
+    </div>
+    <div class="reveal">
+      <h2>The <em>Build</em></h2>
+      <p>Documents are issued. Trades are selected from a vetted bench. The studio attends every weekly site meeting and resolves every detail in person — joinery reveals, tile layouts, plaster colour mocks.</p>
+      <div class="deliverables">
+        <h4>Deliverables</h4>
+        <ul><li>Construction documents</li><li>Trade procurement & contracts</li><li>Weekly on-site oversight</li><li>Custom joinery & millwork</li></ul>
+      </div>
+    </div>
+    <div class="img imgcard reveal-img"><div class="tex tex-3"></div><div class="ph">On-site — Joinery, week 14</div></div>
+  </div>
+
+  <div class="between">
+    <p class="reveal">Between every <em>phase</em> — a pause. We sit with the work, look at it in different light, and return to it the following week.</p>
+  </div>
+
+  <div class="step">
+    <div class="marker">
+      <div class="num">0<em>4</em></div>
+      <div class="dur">Months 8 — 14</div>
+    </div>
+    <div class="reveal">
+      <h2>The <em>Composition</em></h2>
+      <p>Furniture, lighting, art, and textiles are sourced — much of it custom or vintage, almost none from a catalog. Every piece is photographed in situ before it leaves the showroom.</p>
+      <div class="deliverables">
+        <h4>Deliverables</h4>
+        <ul><li>FF&E specification & sourcing</li><li>Custom & vintage procurement</li><li>Art & object curation</li><li>Textile & soft-goods program</li></ul>
+      </div>
+    </div>
+    <div class="img imgcard reveal-img"><div class="tex tex-1"></div><div class="ph">Showroom — Furniture review</div></div>
+  </div>
+
+  <div class="step">
+    <div class="marker">
+      <div class="num">0<em>5</em></div>
+      <div class="dur">Final 3 — 6 weeks</div>
+    </div>
+    <div class="reveal">
+      <h2>The <em>Install</em></h2>
+      <p>The studio is on-site daily. Pieces arrive, are placed, are moved, are placed again. The final week is spent styling — books, ceramics, the small objects that turn a finished house into yours.</p>
+      <div class="deliverables">
+        <h4>Deliverables</h4>
+        <ul><li>White-glove install & placement</li><li>Final styling pass</li><li>Photography & documentation</li><li>Care & maintenance binder</li></ul>
+      </div>
+    </div>
+    <div class="img imgcard reveal-img"><div class="tex tex-6"></div><div class="ph">Final styling — Day of handover</div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 class="reveal">Twelve months from <em>now</em>,<br>you'll be home.</h2>
+  <a href="contact.html" class="btn" data-transition>Begin an inquiry <span class="arrow">→</span></a>
+</section>
+
+<footer class="foot">
+  <div class="shell">
+    <div class="big reveal">Let's <em>compose</em><br>something quiet.</div>
+    <div class="grid">
+      <div><h4>El Style Designs</h4><p>Interior design practice<br>founded by Ellada Mesveliani<br>in Los Angeles, California.</p></div>
+      <div><h4>Inquiries</h4><a href="mailto:hello@elstyledesigns.com">hello@elstyledesigns.com</a><a href="contact.html" data-transition>Project form</a></div>
+      <div><h4>Studio</h4><p>Los Angeles, CA<br>By appointment</p></div>
+      <div><h4>Elsewhere</h4><a href="https://instagram.com/ellada_mesveliani" target="_blank">Instagram</a><a href="about.html" data-transition>About Ellada</a></div>
+    </div>
+    <div class="meta"><span>© 2026 El Style Designs</span><span>Los Angeles, CA</span><span>Designed in residence</span></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
