@@ -163,8 +163,7 @@ a   { color: inherit; text-decoration: none; }
   height: auto;
   margin-top: 36px;
 }
-/* logo photo sits on a white field — multiply melts it into the page */
-.crest, .crest-sm { mix-blend-mode: multiply; }
+/* logo is a transparent PNG/WebP — sits cleanly on any background */
 /* staged fade-in */
 .lander > * { opacity: 0; transform: translateY(18px); animation: rise 1.1s cubic-bezier(0.2,0.8,0.2,1) forwards; }
 .lander .name  { animation-delay: 0.15s; }
