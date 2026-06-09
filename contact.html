@@ -61,13 +61,23 @@
   .aside a:hover { color: var(--gold); }
   .aside em { font-style: italic; }
 
-  .sent { display: none; text-align: center; padding: 60px 0; }
-  .sent .crest-sm { width: 38px; margin: 0 auto 26px; }
-  .sent h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(32px,5vw,54px); margin-bottom: 14px; }
-  .sent h2 em { font-style: italic; }
-  .sent p { font-size: 17px; color: var(--ink-soft); max-width: 440px; margin: 0 auto; line-height: 1.7; }
-  body.is-sent #inquiry { display: none; }
-  body.is-sent .sent { display: block; }
+  /* submission confirmation bubble */
+  .toast {
+    position: fixed; left: 50%; bottom: 36px;
+    transform: translateX(-50%) translateY(24px);
+    display: flex; align-items: center; gap: 12px;
+    background: var(--ink); color: #faf8f3;
+    padding: 16px 28px; border-radius: 999px;
+    font-size: 14px; letter-spacing: 0.02em;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    opacity: 0; pointer-events: none; z-index: 2000;
+    transition: opacity .45s ease, transform .45s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .toast::before {
+    content: ""; flex: none; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--gold);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
 </style>
 </head>
 <body>
@@ -97,7 +107,6 @@
       <input type="hidden" name="_subject" value="New inquiry — Ellada Mesveliani Interiors" />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_autoresponse" value="Thanks, We&rsquo;ll be in touch soon." />
       <!-- honeypot: bots fill this, humans never see it -->
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
       <div class="row2">
@@ -129,12 +138,6 @@
         <p class="note">I respond within a few business days — usually sooner.</p>
       </div>
     </form>
-
-    <div class="sent">
-      <img class="crest-sm" src="uploads/fleur-de-lis.webp" alt="" aria-hidden="true" />
-      <h2>Thank <em>you</em>.</h2>
-      <p>Your note is on its way. I&rsquo;ll be in touch shortly to begin the conversation.</p>
-    </div>
 
     <aside class="aside">
       <div class="block">
@@ -182,14 +185,17 @@
   </div>
 </footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite">Thanks, We&rsquo;ll be in touch soon.</div>
+
 <script src="script.js"></script>
 <script>
-  // Send the inquiry through FormSubmit via AJAX so the visitor stays on-page
-  // and the "Thank you" state shows. Falls back to a normal POST if JS is off.
+  // Send the inquiry through FormSubmit via AJAX so the visitor stays on-page.
+  // On success, show a confirmation bubble and reset the form.
   document.getElementById('inquiry').addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     const btn = form.querySelector('button[type="submit"]');
+    const toast = document.getElementById('toast');
     const original = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = 'Sending&hellip;';
@@ -200,11 +206,15 @@
         body: new FormData(form)
       });
       if (!res.ok) throw new Error('Request failed');
-      document.body.classList.add('is-sent');
+      form.reset();
+      toast.classList.add('show');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => toast.classList.remove('show'), 5000);
     } catch (err) {
+      alert('Sorry — your message could not be sent right now. Please email elstyledesign@gmail.com directly.');
+    } finally {
       btn.disabled = false;
       btn.innerHTML = original;
-      alert('Sorry — your message could not be sent right now. Please email elstyledesign@gmail.com directly.');
     }
   });
 </script>
