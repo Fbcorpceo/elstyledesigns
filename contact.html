@@ -91,8 +91,8 @@
 
 <section class="wrap">
   <div class="contact-grid">
-    <!-- Submits via FormSubmit (AJAX); delivers inquiries to elstylesdesign@gmail.com -->
-    <form id="inquiry" action="https://formsubmit.co/elstylesdesign@gmail.com" method="POST">
+    <!-- Submits via FormSubmit (AJAX); delivers inquiries to elstyledesign@gmail.com -->
+    <form id="inquiry" action="https://formsubmit.co/elstyledesign@gmail.com" method="POST">
       <!-- FormSubmit options -->
       <input type="hidden" name="_subject" value="New inquiry — Ellada Mesveliani Interiors" />
       <input type="hidden" name="_template" value="table" />
@@ -138,7 +138,7 @@
     <aside class="aside">
       <div class="block">
         <h3>Email</h3>
-        <a href="mailto:elstylesdesign@gmail.com">elstylesdesign@<br>gmail.com</a>
+        <a href="mailto:elstyledesign@gmail.com">elstyledesign@<br>gmail.com</a>
       </div>
       <div class="block">
         <h3>Studio</h3>
@@ -161,7 +161,7 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="mailto:elstylesdesign@gmail.com">elstylesdesign@gmail.com</a>
+        <a href="mailto:elstyledesign@gmail.com">elstyledesign@gmail.com</a>
         <a href="contact.html">Inquiry form</a>
       </div>
       <div>
@@ -193,7 +193,7 @@
     btn.disabled = true;
     btn.innerHTML = 'Sending&hellip;';
     try {
-      const res = await fetch('https://formsubmit.co/ajax/elstylesdesign@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/elstyledesign@gmail.com', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(form)
@@ -203,7 +203,7 @@
     } catch (err) {
       btn.disabled = false;
       btn.innerHTML = original;
-      alert('Sorry — your message could not be sent right now. Please email elstylesdesign@gmail.com directly.');
+      alert('Sorry — your message could not be sent right now. Please email elstyledesign@gmail.com directly.');
     }
   });
 </script>
