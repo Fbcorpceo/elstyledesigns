@@ -91,8 +91,14 @@
 
 <section class="wrap">
   <div class="contact-grid">
-    <!-- mailto fallback keeps the form functional on a static host -->
-    <form id="inquiry" action="mailto:hello@elstyledesigns.com" method="post" enctype="text/plain">
+    <!-- Submits via FormSubmit (AJAX); delivers inquiries to elstylesdesign@gmail.com -->
+    <form id="inquiry" action="https://formsubmit.co/elstylesdesign@gmail.com" method="POST">
+      <!-- FormSubmit options -->
+      <input type="hidden" name="_subject" value="New inquiry — Ellada Mesveliani Interiors" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <!-- honeypot: bots fill this, humans never see it -->
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
       <div class="row2">
         <div class="field">
           <label>Name</label>
@@ -132,7 +138,7 @@
     <aside class="aside">
       <div class="block">
         <h3>Email</h3>
-        <a href="mailto:hello@elstyledesigns.com">hello@<br>elstyledesigns.com</a>
+        <a href="mailto:elstylesdesign@gmail.com">elstylesdesign@<br>gmail.com</a>
       </div>
       <div class="block">
         <h3>Studio</h3>
@@ -155,7 +161,7 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="mailto:hello@elstyledesigns.com">hello@elstyledesigns.com</a>
+        <a href="mailto:elstylesdesign@gmail.com">elstylesdesign@gmail.com</a>
         <a href="contact.html">Inquiry form</a>
       </div>
       <div>
@@ -177,9 +183,28 @@
 
 <script src="script.js"></script>
 <script>
-  // Front-end confirmation; the mailto action still fires for a real send.
-  document.getElementById('inquiry').addEventListener('submit', () => {
-    setTimeout(() => document.body.classList.add('is-sent'), 100);
+  // Send the inquiry through FormSubmit via AJAX so the visitor stays on-page
+  // and the "Thank you" state shows. Falls back to a normal POST if JS is off.
+  document.getElementById('inquiry').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Sending&hellip;';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/elstylesdesign@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) throw new Error('Request failed');
+      document.body.classList.add('is-sent');
+    } catch (err) {
+      btn.disabled = false;
+      btn.innerHTML = original;
+      alert('Sorry — your message could not be sent right now. Please email elstylesdesign@gmail.com directly.');
+    }
   });
 </script>
 </body>
