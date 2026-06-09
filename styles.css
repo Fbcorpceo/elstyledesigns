@@ -234,26 +234,13 @@ a   { color: inherit; text-decoration: none; }
   aspect-ratio: 4 / 5;
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, #eef7f8 0%, #e3eef0 100%);
+  background: linear-gradient(135deg, #eef7f8 0%, #e3eef0 100%);
 }
-/* swap the background-image below for a real photo:
-   .portrait { background-image: url("uploads/ellada.jpg"); background-size: cover; background-position: center; } */
-.portrait .ph {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--ink-mute);
-}
-.portrait .ph .crest-sm { width: 40px; opacity: 0.55; }
-.portrait .ph span {
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 .about h2 {
   font-family: var(--serif);
