@@ -230,7 +230,7 @@ a   { color: inherit; text-decoration: none; }
   align-items: center;
 }
 .portrait {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1117 / 2000;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #eef7f8 0%, #e3eef0 100%);
@@ -238,8 +238,8 @@ a   { color: inherit; text-decoration: none; }
 .portrait img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
 }
 .about h2 {
   font-family: var(--serif);
