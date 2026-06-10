@@ -66,19 +66,9 @@ a   { color: inherit; text-decoration: none; }
 }
 .nav .mark {
   font-size: 15px;
-  letter-spacing: 0.34em;
-  font-weight: 300;
+  letter-spacing: 0.22em;
+  font-weight: 400;
   text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-}
-.nav .mark img {
-  height: 13px;
-  width: auto;
-  display: block;
-}
-@media (max-width: 560px) {
-  .nav .mark img { height: 11px; }
 }
 .nav .links { display: flex; gap: 34px; }
 .nav .links a {
