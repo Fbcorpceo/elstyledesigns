@@ -39,6 +39,37 @@ const io = new IntersectionObserver(
 );
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+// --- Slot-machine word reel on the contact band ---
+const wordSlot = document.getElementById('wordSlot');
+if (wordSlot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const track = wordSlot.querySelector('.word-track');
+  const words = Array.from(track.children);
+  const setWidth = (el) => { wordSlot.style.width = el.getBoundingClientRect().width + 'px'; };
+
+  let i = 0;
+  words[0].classList.add('is-current');
+  const ready = (document.fonts && document.fonts.ready) || Promise.resolve();
+  ready.then(() => setWidth(words[0]));
+
+  const advance = () => {
+    const cur = words[i];
+    i = (i + 1) % words.length;
+    const next = words[i];
+    cur.classList.replace('is-current', 'is-out');
+    next.classList.remove('is-out');
+    next.classList.add('is-current');
+    setWidth(next);
+    setTimeout(() => cur.classList.remove('is-out'), 520);
+  };
+
+  let timer = setInterval(advance, 2200);
+  window.addEventListener('resize', () => setWidth(words[i]));
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { clearInterval(timer); }
+    else { timer = setInterval(advance, 2200); }
+  });
+}
+
 // --- Lightbox for gallery pages ---
 const lb = document.getElementById('lightbox');
 if (lb) {
