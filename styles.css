@@ -350,9 +350,11 @@ a   { color: inherit; text-decoration: none; }
 .word-slot {
   position: relative;
   display: inline-block;
-  overflow: hidden;
   height: 1.1em;
   vertical-align: bottom;
+  /* clip left/right only (for the width animation); let descenders/ascenders breathe.
+     small right allowance so the italic lean on the last letter isn't shaved */
+  clip-path: inset(-0.45em -0.12em -0.5em 0);
   transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .word-track { display: block; height: 1.1em; }
